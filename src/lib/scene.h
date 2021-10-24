@@ -8,6 +8,7 @@ class Scene {
     int width;
     Entity *entities[];
 
+    void place_entites(void);
     void draw(void);
     void reset(void);
 

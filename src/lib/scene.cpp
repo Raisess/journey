@@ -1,10 +1,13 @@
 #include "scene.h"
-#include <unistd.h>
 
 #ifdef WIN32
+#include <Windows.h>
 #define CLEAR "cls"
+#define sleep Sleep
 #else
+#include <unistd.h>
 #define CLEAR "clear"
+#define sleep usleep
 #endif
 
 #define SECOND 1000000
@@ -17,12 +20,7 @@ Scene::Scene(int width, int height) {
   this->reset();
 }
 
-void Scene::attach_entity(Entity *entity) {
-  this->entities[this->entities_size] = entity;
-  this->entities_size++;
-}
-
-void Scene::draw(void) {
+void Scene::place_entites(void) {
   for (int k = 0; k < this->entities_size; k++) {
     const TEntity *entity = this->entities[k]->get();
 
@@ -30,7 +28,9 @@ void Scene::draw(void) {
       this->scene[entity->pos.y][entity->pos.x] = entity->draw;
     }
   }
+}
 
+void Scene::draw(void) {
   for (int i = 0; i < this->height; i++) {
     for (int j = 0; j < this->width; j++) {
       std::cout << this->scene[i][j];
@@ -48,9 +48,15 @@ void Scene::reset(void) {
   }
 }
 
+void Scene::attach_entity(Entity *entity) {
+  this->entities[this->entities_size] = entity;
+  this->entities_size++;
+}
+
 void Scene::update(void) {
   system(CLEAR);
+  this->place_entites();
   this->draw();
   this->reset();
-  usleep(UPDATE_SECONDS * SECOND);
+  sleep(UPDATE_SECONDS * SECOND);
 }
