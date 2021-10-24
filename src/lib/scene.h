@@ -9,12 +9,12 @@ class Scene {
     Entity *entities[];
 
     void place_entites(void);
-    void draw(void);
+    void update(void);
     void reset(void);
 
   public:
     Scene(int width, int height);
 
     void attach_entity(Entity *entity);
-    void update(void);
+    void draw(void);
 };

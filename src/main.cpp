@@ -23,7 +23,7 @@ int main() {
     block_one->update(0, y1);
     block_two->update(59, y1);
     ball->update(x, y);
-    scene->update();
+    scene->draw();
 
     if (ball_back) {
       x--;

@@ -30,7 +30,7 @@ void Scene::place_entites(void) {
   }
 }
 
-void Scene::draw(void) {
+void Scene::update(void) {
   for (int i = 0; i < this->height; i++) {
     for (int j = 0; j < this->width; j++) {
       std::cout << this->scene[i][j];
@@ -53,10 +53,10 @@ void Scene::attach_entity(Entity *entity) {
   this->entities_size++;
 }
 
-void Scene::update(void) {
+void Scene::draw(void) {
   system(CLEAR);
   this->place_entites();
-  this->draw();
+  this->update();
   this->reset();
   sleep(UPDATE_SECONDS * SECOND);
 }
