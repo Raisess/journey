@@ -3,9 +3,9 @@
 int main() {
   Engine::Scene *scene = new Engine::Scene(60, 20);
 
-  Engine::Entity *block_one = new Engine::Entity(0, "|+|");
-  Engine::Entity *block_two = new Engine::Entity(1, "|-|");
-  Engine::Entity *ball = new Engine::Entity(2, "O");
+  Engine::Entity *block_one = new Engine::Entity("|+|");
+  Engine::Entity *block_two = new Engine::Entity("|-|");
+  Engine::Entity *ball = new Engine::Entity("O");
 
   scene->attach_entity(block_one);
   scene->attach_entity(block_two);

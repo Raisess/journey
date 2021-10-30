@@ -4,6 +4,12 @@
 void Helpers::EntityManager::alloc(Engine::Entity *entity) {
   this->node = (EntityLList *) malloc(sizeof(EntityLList));
 
+  entity->set_id(
+    this->head != NULL
+    ? this->head->data->get_id() + 1
+    : 0
+  );
+
   this->node->data = entity;
   this->node->next = this->head;
 

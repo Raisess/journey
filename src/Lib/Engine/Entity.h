@@ -18,10 +18,11 @@ class Entity {
     Position pos;
 
   public:
-    Entity(int id, String draw);
+    Entity(String draw);
     ~Entity() { delete this; }
 
     void update(int x, int y);
+    void set_id(int id);
     int get_id(void) const { return this->id; }
     String get_draw(void) const { return this->draw; }
     Position get_pos(void) const { return this->pos; }
