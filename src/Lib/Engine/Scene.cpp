@@ -1,4 +1,5 @@
 #include "Scene.h"
+#include "./Helpers/Entity/EntityManager.h"
 
 #ifdef WIN32
 #include <Windows.h>
@@ -16,14 +17,15 @@
 Engine::Scene::Scene(int width, int height)
   : width(width), height(height)
 {
+  this->entity_manager = new Helpers::EntityManager();
   this->reset();
 }
 
 void Engine::Scene::place_entites(void) {
   for (int k = 0; k < this->entities_size; k++) {
-    const Entity *entity = this->entities[k];
-    const String draw = entity->getDraw();
-    const Position pos = entity->getPos();
+    Engine::Entity *entity = this->entity_manager->get(k);
+    String draw = entity->get_draw();
+    Position pos = entity->get_pos();
 
     if (pos.x >= 0 && pos.y >= 0) {
       this->scene[pos.y][pos.x] = draw;
@@ -50,8 +52,12 @@ void Engine::Scene::reset(void) {
 }
 
 void Engine::Scene::attach_entity(Entity *entity) {
-  this->entities[this->entities_size] = entity;
+  this->entity_manager->alloc(entity);
   this->entities_size++;
+}
+
+void Engine::Scene::update_entity(Entity *entity, int x, int y) {
+  this->entity_manager->update_pos(entity->get_id(), x, y);
 }
 
 void Engine::Scene::draw(void) {

@@ -3,9 +3,9 @@
 int main() {
   Engine::Scene *scene = new Engine::Scene(60, 20);
 
-  Engine::Entity *block_one = new Engine::Entity("|+|");
-  Engine::Entity *block_two = new Engine::Entity("|-|");
-  Engine::Entity *ball = new Engine::Entity("O");
+  Engine::Entity *block_one = new Engine::Entity(0, "|+|");
+  Engine::Entity *block_two = new Engine::Entity(1, "|-|");
+  Engine::Entity *ball = new Engine::Entity(2, "O");
 
   scene->attach_entity(block_one);
   scene->attach_entity(block_two);
@@ -20,9 +20,9 @@ int main() {
   bool ball_back = false;
 
   while (true) {
-    block_one->update(0, y1);
-    block_two->update(59, y1);
-    ball->update(x, y);
+    scene->update_entity(block_one, 0, y1);
+    scene->update_entity(block_two, 59, y1);
+    scene->update_entity(ball, x, y);
     scene->draw();
 
     if (ball_back) {
