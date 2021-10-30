@@ -19,6 +19,7 @@ class Entity {
 
   public:
     Entity(int id, String draw);
+    ~Entity() { delete this; }
 
     void update(int x, int y);
     int get_id(void) const { return this->id; }

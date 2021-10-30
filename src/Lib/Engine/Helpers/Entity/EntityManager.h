@@ -18,6 +18,8 @@ class EntityManager {
     EntityLList *get_list_item(int id);
 
   public:
+    ~EntityManager() { delete this; }
+
     void alloc(Engine::Entity *entity);
     void update_pos(int id, int x, int y);
     void destroy(int id);

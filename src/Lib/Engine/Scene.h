@@ -19,6 +19,7 @@ class Scene {
 
   public:
     Scene(int width, int height);
+    ~Scene() { delete this; }
 
     void attach_entity(Entity *entity);
     void update_entity(Entity *entity, int x, int y);
