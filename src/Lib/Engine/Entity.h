@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 
 typedef std::string String;
@@ -7,10 +9,7 @@ typedef struct Position {
   int y;
 } Position;
 
-typedef struct TEntity {
-  String draw;
-  Position pos;
-} TEntity;
+namespace Engine {
 
 class Entity {
   private:
@@ -21,5 +20,8 @@ class Entity {
     Entity(String draw);
 
     void update(int x, int y);
-    TEntity *get(void);
+    String getDraw(void) const { return this->draw; }
+    Position getPos(void) const { return this->pos; }
 };
+
+}

@@ -1,2 +1,2 @@
-g++ ./src/lib/entity.cpp ./src/lib/scene.cpp ./src/main.cpp -o build
+g++ ./src/Lib/Engine/Entity.cpp ./src/Lib/Engine/Scene.cpp ./src/main.cpp -o build
 ./build

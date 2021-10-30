@@ -1,4 +1,8 @@
-#include "entity.h"
+#pragma once
+
+#include "Entity.h"
+
+namespace Engine {
 
 class Scene {
   private:
@@ -18,3 +22,5 @@ class Scene {
     void attach_entity(Entity *entity);
     void draw(void);
 };
+
+}

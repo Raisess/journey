@@ -1,11 +1,11 @@
-#include "./lib/scene.h"
+#include "./Lib/Engine/Scene.h"
 
 int main() {
-  Scene *scene = new Scene(60, 20);
+  Engine::Scene *scene = new Engine::Scene(60, 20);
 
-  Entity *block_one = new Entity("|+|");
-  Entity *block_two = new Entity("|-|");
-  Entity *ball = new Entity("O");
+  Engine::Entity *block_one = new Engine::Entity("|+|");
+  Engine::Entity *block_two = new Engine::Entity("|-|");
+  Engine::Entity *ball = new Engine::Entity("O");
 
   scene->attach_entity(block_one);
   scene->attach_entity(block_two);
