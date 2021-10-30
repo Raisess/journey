@@ -1,6 +1,6 @@
 #pragma once
 
-#include "./Helpers/Entity/EntityManager.h"
+#include "./Helpers/EntityManager.h"
 #include "Entity.h"
 
 namespace Engine {

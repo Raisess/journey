@@ -1,5 +1,5 @@
 #include "Scene.h"
-#include "./Helpers/Entity/EntityManager.h"
+#include "./Helpers/EntityManager.h"
 
 #ifdef WIN32
 #include <Windows.h>

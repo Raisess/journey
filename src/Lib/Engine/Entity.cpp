@@ -1,5 +1,5 @@
 #include "Entity.h"
-#include "./Helpers/Entity/EntityManager.h"
+#include "./Helpers/EntityManager.h"
 
 Engine::Entity::Entity(String draw)
   : draw(draw)
@@ -12,4 +12,8 @@ void Engine::Entity::update(int x, int y) {
 
 void Engine::Entity::set_id(int id) {
   this->id = id;
+}
+
+void Engine::Entity::set_alias(String alias) {
+  this->alias = alias;
 }
