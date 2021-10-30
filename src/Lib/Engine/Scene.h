@@ -21,7 +21,7 @@ class Scene {
     Scene(int width, int height);
     ~Scene() { delete this; }
 
-    void attach_entity(Entity *entity);
+    void attach_entity(String alias, Entity *entity);
     void update_entity(Entity *entity, int x, int y);
     void draw(void);
 };

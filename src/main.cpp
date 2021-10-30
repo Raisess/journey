@@ -7,9 +7,9 @@ int main() {
   Engine::Entity *block_two = new Engine::Entity("|-|");
   Engine::Entity *ball = new Engine::Entity("O");
 
-  scene->attach_entity(block_one);
-  scene->attach_entity(block_two);
-  scene->attach_entity(ball);
+  scene->attach_entity("block-one", block_one);
+  scene->attach_entity("block-two", block_two);
+  scene->attach_entity("ball", ball);
 
   int c = 0;
   int y1 = 0;

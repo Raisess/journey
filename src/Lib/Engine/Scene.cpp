@@ -51,7 +51,9 @@ void Engine::Scene::reset(void) {
   }
 }
 
-void Engine::Scene::attach_entity(Entity *entity) {
+void Engine::Scene::attach_entity(String alias, Entity *entity) {
+  entity->set_alias(alias);
+
   this->entity_manager->alloc(entity);
   this->entities_size++;
 }
