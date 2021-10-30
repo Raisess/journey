@@ -2,10 +2,11 @@ CXX = g++
 
 BUILD_DIR = ./build
 SOURCE_DIR = ./src
+LIBENG_DIR = /Lib/Engine
 
-ENGINE_FILES = $(SOURCE_DIR)/Lib/Engine/Helpers/Entity/EntityManager.cpp \
-							 $(SOURCE_DIR)/Lib/Engine/Entity.cpp \
-							 $(SOURCE_DIR)/Lib/Engine/Scene.cpp
+ENGINE_FILES = $(SOURCE_DIR)$(LIBENG_DIR)/Helpers/Entity/EntityManager.cpp \
+							 $(SOURCE_DIR)$(LIBENG_DIR)/Entity.cpp \
+							 $(SOURCE_DIR)$(LIBENG_DIR)/Scene.cpp
 
 build:
 	mkdir -p $(BUILD_DIR)
