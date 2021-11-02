@@ -1,12 +1,12 @@
-#include <cstdlib>
 #include "Debugger.h"
+#include "Env.h"
 
-#define DEBUG (bool) std::getenv("DEBUG")
+#define DEBUG Utils::Env::get_env("DEBUG")
 
 Utils::Debugger::Debugger(std::string ctx) : ctx(ctx) {}
 
 void Utils::Debugger::draw_debug_log(void) {
-  if (DEBUG) {
+  if (DEBUG == "true" || DEBUG == "1") {
     std::string message;
 
     for (int i = 0; i < this->messages.size(); i++) {
