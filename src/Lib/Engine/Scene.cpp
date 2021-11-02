@@ -24,6 +24,45 @@ Engine::Scene::Scene(int width, int height)
   this->reset();
 }
 
+void Engine::Scene::draw(void) {
+  system(CLEAR);
+  this->place_entites();
+  this->update();
+  this->debugger->draw_debug_log();
+  this->debugger->clear();
+  this->reset();
+  sleep(UPDATE_SECONDS * SECOND);
+}
+
+void Engine::Scene::update_entity(Entity *entity, int x, int y) {
+  this->entity_manager->update_pos(entity->get_id(), x, y);
+}
+
+void Engine::Scene::attach_entity(String alias, Entity *entity) {
+  entity->set_alias(alias);
+
+  this->entity_manager->alloc(entity);
+  this->entities_size++;
+}
+
+void Engine::Scene::reset(void) {
+  for (int i = 0; i < this->height; i++) {
+    for (int j = 0; j < this->width; j++) {
+      this->scene[i][j] = " ";
+    }
+  }
+}
+
+void Engine::Scene::update(void) {
+  for (int i = 0; i < this->height; i++) {
+    for (int j = 0; j < this->width; j++) {
+      std::cout << this->scene[i][j];
+    }
+
+    std::cout << "\n";
+  }
+}
+
 void Engine::Scene::place_entites(void) {
   for (int k = 0; k < this->entities_size; k++) {
     Engine::Entity *entity = this->entity_manager->get(k);
@@ -49,41 +88,36 @@ void Engine::Scene::place_entites(void) {
   }
 }
 
-void Engine::Scene::update(void) {
-  for (int i = 0; i < this->height; i++) {
-    for (int j = 0; j < this->width; j++) {
-      std::cout << this->scene[i][j];
-    }
+bool Engine::Scene::is_colliding(Entity *left, Entity *right) {
+  Position left_pos = left->get_pos();
+  Position right_pos = right->get_pos();
 
-    std::cout << "\n";
+  bool is_colliding_top = false;
+  bool is_colliding_side = false;
+
+  if (left_pos.y > right_pos.y) {
+    is_colliding_top = left_pos.y - right_pos.y == 1 ? true : false;
+  } else {
+    is_colliding_top = right_pos.y - left_pos.y == 1 ? true : false;
   }
-}
 
-void Engine::Scene::reset(void) {
-  for (int i = 0; i < this->height; i++) {
-    for (int j = 0; j < this->width; j++) {
-      this->scene[i][j] = " ";
-    }
+  if (left_pos.x > right_pos.x) {
+    is_colliding_side = left_pos.x - right_pos.x == 1 ? true : false;
+  } else {
+    is_colliding_side = right_pos.x - left_pos.x == 1 ? true : false;
   }
-}
 
-void Engine::Scene::attach_entity(String alias, Entity *entity) {
-  entity->set_alias(alias);
+  bool is_colliding = is_colliding_top || is_colliding_side;
 
-  this->entity_manager->alloc(entity);
-  this->entities_size++;
-}
+  String msg;
 
-void Engine::Scene::update_entity(Entity *entity, int x, int y) {
-  this->entity_manager->update_pos(entity->get_id(), x, y);
-}
+  msg.append(left->get_alias());
+  msg.append(" and ");
+  msg.append(right->get_alias());
+  msg.append(" is colliding: ");
+  msg.append(std::to_string(is_colliding));
 
-void Engine::Scene::draw(void) {
-  system(CLEAR);
-  this->place_entites();
-  this->update();
-  this->debugger->draw_debug_log();
-  this->debugger->clear();
-  this->reset();
-  sleep(UPDATE_SECONDS * SECOND);
+  this->debugger->push_message(msg);
+
+  return is_colliding;
 }

@@ -15,16 +15,17 @@ class Scene {
     int height;
     int width;
 
-    void place_entites(void);
-    void update(void);
     void reset(void);
+    void update(void);
+    void place_entites(void);
 
   public:
     Scene(int width, int height);
 
-    void attach_entity(String alias, Entity *entity);
-    void update_entity(Entity *entity, int x, int y);
     void draw(void);
+    void update_entity(Entity *entity, int x, int y);
+    void attach_entity(String alias, Entity *entity);
+    bool is_colliding(Entity *left, Entity *right);
 };
 
 }
