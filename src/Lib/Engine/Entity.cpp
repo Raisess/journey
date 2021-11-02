@@ -1,5 +1,5 @@
 #include "Entity.h"
-#include "./Helpers/EntityManager.h"
+#include "Helpers/EntityManager.h"
 
 Engine::Entity::Entity(String draw)
   : draw(draw)

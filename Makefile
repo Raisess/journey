@@ -7,6 +7,7 @@ LIBENG_DIR = /Lib/Engine
 ENGINE_FILES = $(SOURCE_DIR)$(LIBENG_DIR)/Utils/Debugger.cpp \
 							 $(SOURCE_DIR)$(LIBENG_DIR)/Helpers/EntityManager.cpp \
 							 $(SOURCE_DIR)$(LIBENG_DIR)/Entity.cpp \
+							 $(SOURCE_DIR)$(LIBENG_DIR)/Physics.cpp \
 							 $(SOURCE_DIR)$(LIBENG_DIR)/Scene.cpp
 
 build:

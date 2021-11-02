@@ -1,4 +1,4 @@
-#include "./Lib/Engine/Scene.h"
+#include "Lib/Engine/Scene.h"
 
 int main() {
   Engine::Scene *scene = new Engine::Scene(60, 20);
@@ -23,8 +23,8 @@ int main() {
     scene->update_entity(block_one, 0, y1);
     scene->update_entity(block_two, 59, y1);
     scene->update_entity(ball, x, y);
-    scene->is_colliding(block_one, ball);
-    scene->is_colliding(block_two, ball);
+    scene->physics->is_colliding(block_one, ball);
+    scene->physics->is_colliding(block_two, ball);
     scene->draw();
 
     if (ball_back) {

@@ -1,6 +1,4 @@
 #include "Scene.h"
-#include "./Helpers/EntityManager.h"
-#include "./Utils/Debugger.h"
 
 #ifdef WIN32
 #include <Windows.h>
@@ -20,6 +18,7 @@ Engine::Scene::Scene(int width, int height)
 {
   this->debugger = new Utils::Debugger("Scene");
   this->entity_manager = new Helpers::EntityManager();
+  this->physics = new Engine::Physics(this->debugger);
 
   this->reset();
 }
@@ -86,38 +85,4 @@ void Engine::Scene::place_entities(void) {
       this->scene[pos.y][pos.x] = draw;
     }
   }
-}
-
-bool Engine::Scene::is_colliding(Entity *left, Entity *right) {
-  Position left_pos = left->get_pos();
-  Position right_pos = right->get_pos();
-
-  bool is_colliding_top = false;
-  bool is_colliding_side = false;
-
-  if (left_pos.y > right_pos.y) {
-    is_colliding_top = left_pos.y - right_pos.y == 1 ? true : false;
-  } else {
-    is_colliding_top = right_pos.y - left_pos.y == 1 ? true : false;
-  }
-
-  if (left_pos.x > right_pos.x) {
-    is_colliding_side = left_pos.x - right_pos.x == 1 ? true : false;
-  } else {
-    is_colliding_side = right_pos.x - left_pos.x == 1 ? true : false;
-  }
-
-  bool is_colliding = is_colliding_top || is_colliding_side;
-
-  String msg;
-
-  msg.append(left->get_alias());
-  msg.append(" and ");
-  msg.append(right->get_alias());
-  msg.append(" is colliding: ");
-  msg.append(std::to_string(is_colliding));
-
-  this->debugger->push_message(msg);
-
-  return is_colliding;
 }

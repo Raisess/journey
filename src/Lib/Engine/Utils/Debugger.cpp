@@ -1,5 +1,5 @@
 #include <cstdlib>
-#include "./Debugger.h"
+#include "Debugger.h"
 
 #define DEBUG (bool) std::getenv("DEBUG")
 
