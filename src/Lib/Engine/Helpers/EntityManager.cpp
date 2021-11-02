@@ -1,5 +1,4 @@
-#include "../Entity.h"
-#include "./EntityManager.h"
+#include "EntityManager.h"
 
 void Helpers::EntityManager::alloc(Engine::Entity *entity) {
   this->node = (EntityLList *) malloc(sizeof(EntityLList));
