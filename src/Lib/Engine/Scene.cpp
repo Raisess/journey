@@ -1,5 +1,6 @@
 #include "Scene.h"
 #include "./Helpers/EntityManager.h"
+#include "./Utils/Debugger.h"
 
 #ifdef WIN32
 #include <Windows.h>
@@ -12,12 +13,14 @@
 #endif
 
 #define SECOND 1000000
-#define UPDATE_SECONDS 0.1
+#define UPDATE_SECONDS 0.05F
 
 Engine::Scene::Scene(int width, int height)
   : width(width), height(height)
 {
+  this->debugger = new Utils::Debugger("Scene");
   this->entity_manager = new Helpers::EntityManager();
+
   this->reset();
 }
 
@@ -26,6 +29,19 @@ void Engine::Scene::place_entites(void) {
     Engine::Entity *entity = this->entity_manager->get(k);
     String draw = entity->get_draw();
     Position pos = entity->get_pos();
+
+    String msg;
+
+    msg.append(entity->get_alias());
+    msg.append(": ");
+    msg.append("x(");
+    msg.append(std::to_string(pos.x));
+    msg.append(") ");
+    msg.append("y(");
+    msg.append(std::to_string(pos.y));
+    msg.append(")");
+
+    this->debugger->push_message(msg);
 
     if (pos.x >= 0 && pos.y >= 0) {
       this->scene[pos.y][pos.x] = draw;
@@ -66,6 +82,8 @@ void Engine::Scene::draw(void) {
   system(CLEAR);
   this->place_entites();
   this->update();
+  this->debugger->draw_debug_log();
+  this->debugger->clear();
   this->reset();
   sleep(UPDATE_SECONDS * SECOND);
 }
