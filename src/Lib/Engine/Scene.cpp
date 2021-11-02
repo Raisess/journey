@@ -26,7 +26,7 @@ Engine::Scene::Scene(int width, int height)
 
 void Engine::Scene::draw(void) {
   system(CLEAR);
-  this->place_entites();
+  this->place_entities();
   this->update();
   this->debugger->draw_debug_log();
   this->debugger->clear();
@@ -63,9 +63,9 @@ void Engine::Scene::update(void) {
   }
 }
 
-void Engine::Scene::place_entites(void) {
-  for (int k = 0; k < this->entities_size; k++) {
-    Engine::Entity *entity = this->entity_manager->get(k);
+void Engine::Scene::place_entities(void) {
+  for (int i = 0; i < this->entities_size; i++) {
+    Engine::Entity *entity = this->entity_manager->get(i);
     String draw = entity->get_draw();
     Position pos = entity->get_pos();
 

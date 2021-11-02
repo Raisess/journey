@@ -17,7 +17,7 @@ class Scene {
 
     void reset(void);
     void update(void);
-    void place_entites(void);
+    void place_entities(void);
 
   public:
     Scene(int width, int height);
